@@ -1,0 +1,78 @@
+﻿Final project notes – Liners in Film
+
+1) clone IonicCMS2 as starting point
+git clone git@github.com:gpr1nce/ionicCMS2.git LIF
+
+find mongodb work here; discontinued for MySQL
+
+2) MySQL tables
+user input = articles (existing)
+approved articles = db_entries
+
+create table db_entries (
+id char(36) COMMENT 'System-generated'
+,imdbentity_id varchar(36) COMMENT 'use imdb API to link on this col'
+,akas varchar(255) COMMENT 'other titles after first release'
+,ships varchar(255) COMMENT 'ships depicted in this entry'
+,title DATETIME DEFAULT CURRENT_TIMESTAMP  COMMENT 'film title'
+,imdbUrl varchar(255) COMMENT 'URL for main IMDB page'
+,languages varchar(255) COMMENT 'languages best known for, usually one'
+,locations varchar(255) COMMENT 'identification of where ship is depicted'
+,plot varchar(255) COMMENT 'brief plot summary'
+,year integer(255) COMMENT 'year of release'
+,source varchar(255) COMMENT 'where I got this shipFilm link from'
+,created DATETIME DEFAULT CURRENT_TIMESTAMP  COMMENT 'date entry first created'
+,modified DATETIME DEFAULT CURRENT_TIMESTAMP  COMMENT 'date entry last modified'
+,published DATETIME COMMENT 'date entry published, initially null'
+);
+
+CREATE TABLE users (
+    id CHAR(36) PRIMARY KEY COMMENT 'Primary Key UUID',
+    first_name VARCHAR(40) DEFAULT NULL COMMENT 'The users first name',
+    last_name VARCHAR(40) DEFAULT NULL COMMENT 'The users last name',
+    email VARCHAR(200) DEFAULT NULL COMMENT 'A unique identifier for a user',
+    created DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'When the user was created',
+    modified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'When the user was last edited'
+) ENGINE=INNODB;
+
+INSERT INTO users SET id=UUID(), first_name='Test', last_name='User5', email='test@user5.com';
+
+
+
+I changed my approach after created LIF db in Mongo; populated via Excel; not best for this app, switching to MySQL
+First load statement:
+ db.entries.insert({'imdbEntityID':'000000000000000000000000','Ships':'Pacific Princess, Island Pricess','plot':'Hugely popular TV show; well-timed arrival with new purpose-built cruise ships replacing old vessels and audience conceptions about cruising.','year':'','locations':'Mexico'})
+
+
+="db.entries.insert({'"&$F$2&"':'"&F5&"','"&$I$2&"':'"&I5&"','"&$T$2&"':'"&T5&"','"&$V$2&"':'"&V5&"','"&$S$2&"':'"&S5&"'})"
+	
+Delete all rows of entries table 
+db.entries.DeleteMany({}
+
+query basics:
+use sample_mflix
+
+use sample_mflix
+
+db.movies.find( { rated: { $in: [ "PG", "PG-13" ] } } )
+
+db.movies.find( { countries: "Mexico", "imdb.rating": { $gte: 7 } } )
+
+{ countries: $in: [ "PG", "PG-13" ]
+
+db.entries.find( { 'Ships':  { $in: ['Liberte'] } } )
+
+db.entries.find( { { 'Ships':  { $in: ['Liberte'] } } )
+
+
+
+entry class: what a new user creates; on approval goes to articles
+uniqueness: title + year + ship
+
+
+
+Challenges:
+1) show/hide buttons according to login state
+2) search
+3) add comments
+
