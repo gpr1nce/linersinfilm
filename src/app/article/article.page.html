@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>article</ion-title>
+    <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -21,7 +21,9 @@
         </ion-card-header>
         
         <ion-list>
+          <ion-label>Plot summary:</ion-label>
           <ion-item>{{ article.description  }}</ion-item>
+          <ion-label>Ship/s:</ion-label>
           <ion-item>{{ article.keywords  }}</ion-item>
           <ion-item>{{ article.body  }}</ion-item>
           <ion-item>{{ article.published  }}</ion-item>
