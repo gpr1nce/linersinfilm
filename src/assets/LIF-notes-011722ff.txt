@@ -38,12 +38,16 @@ ALTER TABLE users
   ADD COLUMN password VARCHAR(60) DEFAULT NULL COMMENT 'A salted hash of the password',
   ADD COLUMN salt VARCHAR(128) DEFAULT NULL  COMMENT 'User-specific salt';
 
+7pm 1.17 created linersinfilm repo on github
+- how do I link to it? Trying remote set on CLI
+git remote set-url origin https://github.com/gpr1nce/linersinfilm.git
 
 
 
 INSERT INTO users SET id=UUID(), first_name='Test', last_name='User5', email='test@user5.com', password=’test123’;
 
-INSERT INTO users SET id=UUID(), first_name='Test', last_name='User5', email='test@user5.com';
+INSERT INTO users ( first_name, last_name, email, hash) values ('Test', 'User5','test@user5.com', SHA(’test123’));
+
 
 INSERT INTO db_entries SET imdbentity_id='000000000000000000000000', akas='9', ships='Liberte', title='Sabrina', languages='', locations='', plot='`Sabrina´, Humphrey Bogart in the office, while LIBERTÉ is sailing out of New York harbor - screenshot', ='', year='', source='Earl Of Cruise';
 
