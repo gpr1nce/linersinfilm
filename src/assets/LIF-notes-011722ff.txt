@@ -34,10 +34,18 @@ CREATE TABLE users (
     created DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'When the user was created',
     modified DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'When the user was last edited'
 ) ENGINE=INNODB;
+ALTER TABLE users
+  ADD COLUMN password VARCHAR(60) DEFAULT NULL COMMENT 'A salted hash of the password',
+  ADD COLUMN salt VARCHAR(128) DEFAULT NULL  COMMENT 'User-specific salt';
+
+
+
+
+INSERT INTO users SET id=UUID(), first_name='Test', last_name='User5', email='test@user5.com', password=’test123’;
 
 INSERT INTO users SET id=UUID(), first_name='Test', last_name='User5', email='test@user5.com';
 
-
+INSERT INTO db_entries SET imdbentity_id='000000000000000000000000', akas='9', ships='Liberte', title='Sabrina', languages='', locations='', plot='`Sabrina´, Humphrey Bogart in the office, while LIBERTÉ is sailing out of New York harbor - screenshot', ='', year='', source='Earl Of Cruise';
 
 I changed my approach after created LIF db in Mongo; populated via Excel; not best for this app, switching to MySQL
 First load statement:

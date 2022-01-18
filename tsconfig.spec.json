@@ -12,9 +12,9 @@
     "src/polyfills.ts"
   ],
   "include": [
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts",
+    "src/**/*.spec.ts"
+    ,"src/**/*.d.ts"
     // 01.17.22: for the php
-    "src/**/*.php"
+    // ,"src/**/*.php"
   ]
 }
